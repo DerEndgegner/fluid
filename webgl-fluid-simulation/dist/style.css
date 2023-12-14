@@ -3,6 +3,7 @@
 }
 
 body {
+background-color: coral; 
     cursor: none;
     margin: 0;
     position: absolute;
