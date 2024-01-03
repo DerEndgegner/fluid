@@ -21,68 +21,43 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-
-'use strict';
-
-// Mobile promo section
-
-const promoPopup = document.getElementsByClassName('promo')[0];
-const promoPopupClose = document.getElementsByClassName('promo-close')[0];
-
-if (isMobile()) {
-    setTimeout(() => {
-        promoPopup.style.display = 'table';
-    }, 20000);
-}
-
-promoPopupClose.addEventListener('click', e => {
-    promoPopup.style.display = 'none';
-});
-
-const appleLink = document.getElementById('apple_link');
-appleLink.addEventListener('click', e => {
-    ga('send', 'event', 'link promo', 'app');
-    window.open('https://apps.apple.com/us/app/fluid-simulation/id1443124993');
-});
-
-const googleLink = document.getElementById('google_link');
-googleLink.addEventListener('click', e => {
-    ga('send', 'event', 'link promo', 'app');
-    window.open('https://play.google.com/store/apps/details?id=games.paveldogreat.fluidsimfree');
-});
 document.addEventListener('DOMContentLoaded', function() {
     'use strict';
 
-    const promoPopup = document.getElementsByClassName('promo')[0];
-    const promoPopupClose = document.getElementsByClassName('promo-close')[0];
+    const promoPopupClose = document.querySelector('.promo-close');
 
-    if (isMobile()) {
+    if (promoPopupClose) {
+        promoPopupClose.addEventListener('click', e => {
+        promoPopupClose.style.display = 'none';
+            console.log('Promo Close wurde geklickt!');
+        });
+    }
+
+    // Andere Teile deines Skripts...
+    const promoPopup = document.querySelector('.promo');
+    if (isMobile() && promoPopup) {
         setTimeout(() => {
             promoPopup.style.display = 'table';
         }, 20000);
     }
 
-    promoPopupClose.addEventListener('click', e => {
-        promoPopup.style.display = 'none';
-    });
-
     const appleLink = document.getElementById('apple_link');
-    appleLink.addEventListener('click', e => {
-        ga('send', 'event', 'link promo', 'app');
-        window.open('https://apps.apple.com/us/app/fluid-simulation/id1443124993');
-    });
+    if (appleLink) {
+        appleLink.addEventListener('click', e => {
+            ga('send', 'event', 'link promo', 'app');
+            window.open('https://apps.apple.com/us/app/fluid-simulation/id1443124993');
+        });
+    }
 
     const googleLink = document.getElementById('google_link');
-    googleLink.addEventListener('click', e => {
-        ga('send', 'event', 'link promo', 'app');
-        window.open('https://play.google.com/store/apps/details?id=games.paveldogreat.fluidsimfree');
-    });
-
-    // ... Weitere Event-Listener und der restliche Code
+    if (googleLink) {
+        googleLink.addEventListener('click', e => {
+            ga('send', 'event', 'link promo', 'app');
+            window.open('https://play.google.com/store/apps/details?id=games.paveldogreat.fluidsimfree');
+        });
+    }
 });
 
-
-// Simulation section
 
 const canvas = document.getElementsByTagName('canvas')[0];
 resizeCanvas();
