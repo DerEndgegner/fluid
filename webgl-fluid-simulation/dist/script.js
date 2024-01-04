@@ -1,55 +1,11 @@
-/*
-MIT License
-
-Copyright (c) 2017 Pavel Dobryakov
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-*/// Funktion für das Laden von Google Analytics
+// Funktion für das Laden von Google Analytics
 function loadGoogleAnalytics(callback) {
-  (function (i, s, o, g, r, a, m) {
-    i['GoogleAnalyticsObject'] = r;
-    i[r] = i[r] || function () {
-      (i[r].q = i[r].q || []).push(arguments)
-    }, i[r].l = 1 * new Date();
-    a = s.createElement(o),
-      m = s.getElementsByTagName(o)[0];
-    a.async = 1;
-    a.src = g;
-    m.parentNode.insertBefore(a, m)
-  })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-
-  // Überprüfung, ob 'ga' geladen ist und dann das callback aufrufen
-  function checkIfGaLoaded() {
-    if (typeof ga === 'function') {
-      callback();
-    } else {
-      setTimeout(checkIfGaLoaded, 100); // Wartezeit für Überprüfung
-    }
-  }
-
-  checkIfGaLoaded();
+  // ... (dein GA-Code hier, wie zuvor gezeigt)
 }
 
 // Funktion, die aufgerufen wird, wenn GA geladen ist
 function gaLoaded() {
-  ga('create', 'UA-105392568-1', 'auto');
-  ga('send', 'pageview');
+  // ... (dein Code zum Erstellen von Google Analytics-Events etc.)
 }
 
 // Rufen Sie die Funktion zum Laden von Google Analytics auf und geben Sie gaLoaded als Callback an
@@ -57,6 +13,25 @@ loadGoogleAnalytics(gaLoaded);
 
 // Hier geht der Rest Ihres langen JavaScript-Codes weiter
 // ...
+document.addEventListener('DOMContentLoaded', function() {
+  'use strict';
+
+  // Dein Event-Listener-Code und andere Teile des Skripts, den du bereits hast
+
+  const promoPopup = document.querySelector('.promo');
+  if (isMobile() && promoPopup) {
+      setTimeout(() => {
+          promoPopup.style.display = 'table';
+      }, 20000);
+  }
+  const appleLink = document.getElementById('apple_link');
+  if (appleLink) {
+      appleLink.addEventListener('click', e => {
+          // Dein Code für den Apple-Link-Event
+      });
+  }
+  
+
 
 document.addEventListener('DOMContentLoaded', function() {
     'use strict';
@@ -1688,3 +1663,4 @@ function hashCode (s) {
     }
     return hash;
 };
+  });
