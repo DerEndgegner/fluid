@@ -20,7 +20,44 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-*/
+*/// Funktion für das Laden von Google Analytics
+function loadGoogleAnalytics(callback) {
+  (function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date();
+    a = s.createElement(o),
+      m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+  // Überprüfung, ob 'ga' geladen ist und dann das callback aufrufen
+  function checkIfGaLoaded() {
+    if (typeof ga === 'function') {
+      callback();
+    } else {
+      setTimeout(checkIfGaLoaded, 100); // Wartezeit für Überprüfung
+    }
+  }
+
+  checkIfGaLoaded();
+}
+
+// Funktion, die aufgerufen wird, wenn GA geladen ist
+function gaLoaded() {
+  ga('create', 'UA-105392568-1', 'auto');
+  ga('send', 'pageview');
+}
+
+// Rufen Sie die Funktion zum Laden von Google Analytics auf und geben Sie gaLoaded als Callback an
+loadGoogleAnalytics(gaLoaded);
+
+// Hier geht der Rest Ihres langen JavaScript-Codes weiter
+// ...
+
 document.addEventListener('DOMContentLoaded', function() {
     'use strict';
 
